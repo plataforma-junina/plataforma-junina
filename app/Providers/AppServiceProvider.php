@@ -85,7 +85,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configurePasswordValidation(): void
     {
-        Password::defaults(fn() => Password::min(12)
+        Password::defaults(fn () => Password::min(12)
             ->letters()
             ->numbers()
             ->symbols()
