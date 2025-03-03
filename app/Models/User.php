@@ -9,6 +9,7 @@ use Carbon\CarbonInterface;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,6 +39,14 @@ final class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
+
+    /**
+     * @return HasOne<Tenant, $this>
+     */
+    public function ownedTenant(): HasOne
+    {
+        return $this->hasOne(Tenant::class, 'owner_id');
+    }
 
     /**
      * Get the attributes that should be cast.
