@@ -23,14 +23,14 @@ type SubscribeForm = {
 
 export default function Subscribe() {
     const { data, setData, post, processing, errors, reset } = useForm<SubscribeForm>({
-        name: 'São João do Cariri',
-        acronym: 'SJC',
-        email: 'saojoao.cariri@gmail.com',
-        foundation_date: '2023-01-01',
-        password: 'P@ssw0rd!2025',
-        password_confirmation: 'P@ssw0rd!2025',
-        state: 'CE',
-        city: 'Juazeiro do Norte',
+        name: '',
+        acronym: '',
+        email: '',
+        foundation_date: '',
+        password: '',
+        password_confirmation: '',
+        state: '',
+        city: '',
     });
 
     const submit: FormEventHandler = (e) => {
