@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->foreignId('current_tenant_id')->nullable()->constrained('tenants');
             $table->timestamps();
         });
 

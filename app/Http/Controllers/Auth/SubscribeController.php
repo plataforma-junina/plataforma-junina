@@ -33,13 +33,17 @@ final class SubscribeController extends Controller
                 'password' => Hash::make($request->string('password')->value()),
             ]);
 
-            $user->ownedTenant()->create([
+            $tenant = $user->ownedTenant()->create([
                 'name' => $request->name,
                 'acronym' => $request->acronym,
                 'email' => $request->email,
                 'foundation_date' => $request->foundation_date,
                 'state' => $request->state,
                 'city' => $request->city,
+            ]);
+
+            $user->update([
+                'current_tenant_id' => $tenant->id,
             ]);
 
             event(new Registered($user));

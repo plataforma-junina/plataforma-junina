@@ -41,7 +41,7 @@ export default function Subscribe() {
     };
 
     return (
-        <AuthLayout title="Create an account" description="Enter your details below to create your account">
+        <AuthLayout title="Index an account" description="Enter your details below to create your account">
             <Head title="Subscribe" />
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
@@ -178,7 +178,7 @@ export default function Subscribe() {
 
                     <Button type="submit" className="mt-2 w-full" tabIndex={9} disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                        Create account
+                        Index account
                     </Button>
                 </div>
 

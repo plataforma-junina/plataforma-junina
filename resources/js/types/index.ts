@@ -38,3 +38,26 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface Team {
+    id: string;
+    name: string;
+    description: string;
+    permissions?: Permission[];
+    members?: User[];
+    created_at: string;
+    updated_at: string;
+    [key: string]: unknown;
+}
+
+export interface Permission {
+    value: string;
+    label: string;
+    description: string;
+}
+
+export interface PermissionGroup {
+    value: string;
+    label: string;
+    permissions: Permission[];
+}
