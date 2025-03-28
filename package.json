@@ -7,8 +7,9 @@
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
-        "lint": "eslint . --fix",
-        "types": "tsc --noEmit"
+        "lint": "prettier --write resources/ && eslint . --fix",
+        "test:lint": "prettier --check resources/ && eslint .",
+        "test:types": "tsc --noEmit"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
