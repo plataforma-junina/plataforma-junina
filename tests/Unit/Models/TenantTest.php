@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Enums\SubscriptionStatus;
+use App\Models\Subscription;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -60,5 +62,33 @@ describe('Relationships', function () {
             ->not()->toBeNull()
             ->toBeInstanceOf(User::class)
             ->and($tenant->owner->id)->toBe($user->id);
+    });
+
+    test('hasMany Subscription', function () {
+        $tenant = Tenant::factory()->create();
+
+        $expiredSubscription = Subscription::factory()->create([
+            'tenant_id' => $tenant->id,
+            'status' => SubscriptionStatus::Expired,
+            'starts_at' => now()->subYear(),
+            'ends_at' => now()->subDay(),
+        ]);
+
+        $activeSubscription = Subscription::factory()->create([
+            'tenant_id' => $tenant->id,
+            'status' => SubscriptionStatus::Active,
+            'starts_at' => now(),
+            'ends_at' => now()->addYear(),
+        ]);
+
+        expect($tenant->subscriptions)
+            ->not()->toBeEmpty()
+            ->toHaveCount(2);
+
+        expect($tenant->subscriptions)
+            ->each->toBeInstanceOf(Subscription::class);
+
+        expect($tenant->subscriptions->pluck('id'))
+            ->toContain($expiredSubscription->id, $activeSubscription->id);
     });
 });
