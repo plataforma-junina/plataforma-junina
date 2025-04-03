@@ -33,8 +33,8 @@ test('password can be reset with valid token', function (): void {
     $response = $this->post(route('password.store'), [
         'token' => $token,
         'email' => $user->email,
-        'password' => 'NewPassword123',
-        'password_confirmation' => 'NewPassword123',
+        'password' => 'NewP@ssw0rd!X9$',
+        'password_confirmation' => 'NewP@ssw0rd!X9$',
     ]);
 
     Event::assertDispatched(PasswordReset::class);
@@ -42,7 +42,7 @@ test('password can be reset with valid token', function (): void {
     $response->assertRedirect(route('login'));
     $response->assertSessionHas('status');
 
-    expect(Hash::check('NewPassword123', $user->fresh()->password))->toBeTrue();
+    expect(Hash::check('NewP@ssw0rd!X9$', $user->fresh()->password))->toBeTrue();
 });
 
 test('password reset fails with invalid token', function (): void {
@@ -53,8 +53,8 @@ test('password reset fails with invalid token', function (): void {
     $response = $this->post(route('password.store'), [
         'token' => 'invalid-token',
         'email' => $user->email,
-        'password' => 'NewPassword123',
-        'password_confirmation' => 'NewPassword123',
+        'password' => 'NewP@ssw0rd!X9$',
+        'password_confirmation' => 'NewP@ssw0rd!X9$',
     ]);
 
     Event::assertNotDispatched(PasswordReset::class);

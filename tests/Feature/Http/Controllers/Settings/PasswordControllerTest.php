@@ -30,12 +30,12 @@ test('password can be updated with correct current password', function (): void 
         ->actingAs($user)
         ->put(route('password.update'), [
             'current_password' => 'current-password',
-            'password' => 'new-password',
-            'password_confirmation' => 'new-password',
+            'password' => 'NewP@ssw0rd!X9$',
+            'password_confirmation' => 'NewP@ssw0rd!X9$',
         ]);
 
     $response->assertRedirect();
-    expect(Hash::check('new-password', $user->fresh()->password))->toBeTrue();
+    expect(Hash::check('NewP@ssw0rd!X9$', $user->fresh()->password))->toBeTrue();
 });
 
 test('password cannot be updated with incorrect current password', function (): void {
@@ -47,8 +47,8 @@ test('password cannot be updated with incorrect current password', function (): 
         ->actingAs($user)
         ->put(route('password.update'), [
             'current_password' => 'wrong-password',
-            'password' => 'new-password',
-            'password_confirmation' => 'new-password',
+            'password' => 'NewP@ssw0rd!X9$',
+            'password_confirmation' => 'NewP@ssw0rd!X9$',
         ]);
 
     $response->assertSessionHasErrors('current_password');
