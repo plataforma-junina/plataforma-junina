@@ -2,10 +2,20 @@
     "preset": "laravel",
     "ignore": {
         "words": [
-            "php",
-            "dtos",
+            "dropdown",
             "dt",
-            "dto"
+            "dto",
+            "dtos",
+            "eslint",
+            "favicon",
+            "filesystems",
+            "js",
+            "nav",
+            "php",
+            "ssr",
+            "tsconfig",
+            "tooltip",
+            "utils"
         ],
         "paths": []
     }
