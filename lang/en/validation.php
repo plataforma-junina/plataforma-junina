@@ -193,6 +193,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'tenant.name' => 'tenant name',
+        'tenant.email' => 'tenant email',
+        'tenant.foundation_date' => 'tenant foundation date',
+        'tenant.state' => 'tenant state',
+        'tenant.city' => 'tenant city',
+        'owner.name' => 'owner name',
+        'owner.email' => 'owner email',
+        'owner.password' => 'owner password',
+    ],
 
 ];
