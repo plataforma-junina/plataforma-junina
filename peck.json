@@ -2,7 +2,10 @@
     "preset": "laravel",
     "ignore": {
         "words": [
-            "php"
+            "php",
+            "dtos",
+            "dt",
+            "dto"
         ],
         "paths": []
     }
